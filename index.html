@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MODHOUSE — Ukrainian houses for Europe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="MODHOUSE supplies high-performance prefabricated house kits from Ukraine for European developers and investors."
+  />
+  <style>
+    :root {
+      --blue: #0057b7;   /* Ukrainian flag blue */
+      --yellow: #ffd700; /* Ukrainian flag yellow */
+      --dark: #111827;
+      --gray: #6b7280;
+      --light: #f3f4f6;
+      --accent: #1f2937;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.5;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+    }
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-img {
+      width: 44px;
+      height: auto;
+    }
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--gray);
+    }
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+    }
+    nav a {
+      color: var(--gray);
+    }
+    nav a:hover {
+      color: var(--dark);
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--light);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray);
+    }
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 32px;
+      line-height: 1.15;
+      margin: 16px 0 8px;
+    }
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .btn-secondary {
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 8px 14px;
+      font-size: 14px;
+      background: white;
+      color: var(--dark);
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      background: #f9fafb;
+    }
+    .hero-flags {
+      display: inline-flex;
+      overflow: hidden;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      margin-top: 6px;
+    }
+    .hero-flag-blue {
+      width: 14px;
+      height: 14px;
+      background: var(--blue);
+    }
+    .hero-flag-yellow {
+      width: 14px;
+      height: 14px;
+      background: var(--yellow);
+    }
+    .hero-meta {
+      font-size: 12px;
+      color: var(--gray);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-image-wrap {
+      position: relative;
+    }
+    .hero-main-img {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
+    }
+    .hero-badge {
+      position: absolute;
+      right: -6px;
+      bottom: -10px;
+      background: var(--dark);
+      color: white;
+      border-radius: 16px;
+      padding: 10px 14px;
+      font-size: 12px;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.6);
+    }
+    .hero-badge-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      letter-spacing: 0.1em;
+    }
+    .hero-badge-value {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    /* Sections */
+    section {
+      padding: 28px 0;
+    }
+    section h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    section p.section-subtitle {
+      font-size: 14px;
+      color: var(--gray);
+      margin: 0 0 16px;
+    }
+    /* Features grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (min-width: 900px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      padding: 16px 16px 18px;
+    }
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+    .card-text {
+      font-size: 13px;
+      color: var(--gray);
+    }
+    .badge-square {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: var(--dark);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    /* Specs */
+    .spec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+    .spec-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .spec-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--dark);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .spec-label {
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .spec-value {
+      color: var(--gray);
+      font-size: 13px;
+    }
+    .two-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .hero,
+      .two-cols {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-badge {
+        right: 10px;
+        bottom: -12px;
+      }
+    }
+    /* Process steps */
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (min-width: 768px) {
+      .step-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .step-number {
+      font-size: 12px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+    /* Case studies */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (min-width: 768px) {
+      .case-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .case-img {
+      border-radius: 16px 16px 0 0;
+      overflow: hidden;
+      height: 160px;
+      object-fit: cover;
+    }
+    /* Contact section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    .contact-list {
+      font-size: 14px;
+      color: var(--gray);
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+    }
+    .contact-list li {
+      margin-bottom: 6px;
+    }
+    .form-card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      padding: 18px 16px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .form-grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+    .field label {
+      font-weight: 500;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    .field textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .form-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--gray);
+    }
+    .form-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-submit {
+      background: var(--yellow);
+      color: var(--dark);
+      border-radius: 999px;
+      padding: 8px 18px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .btn-submit:hover {
+      filter: brightness(0.95);
+    }
+    /* Footer */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 18px;
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--gray);
+    }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .footer-cols {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .footer-title {
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 4px;
+    }
+    .footer-links a:hover {
+      color: var(--dark);
+    }
+    .footer-bottom {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <!-- ЗДЕСЬ ПОДСТАВИШЬ СВОЙ ЛОГОТИП -->
+        <img src="images/logo.png" alt="MODHOUSE Logo" class="logo-img" />
+        <div>
+          <div class="logo-text-main">MODHOUSE</div>
+          <div class="logo-text-sub">Ukrainian houses for Europe</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#products">Products</a>
+        <a href="#specs">Specs</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn-primary">Request pricing →</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="chip">
+          <span>For developers & investors</span>
+        </div>
+        <h1>High-performance prefab house kits<br />engineered in Ukraine, built for Europe.</h1>
+        <p class="hero-sub">
+          MODHOUSE supplies container-optimized house kits with energy-efficient envelopes, fast on-site assembly and clear cost per m².
+          Designed in Ukraine. Delivered to your plots in the EU.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Get project pricing →</a>
+          <a href="#specs" class="btn-secondary">Download “MODHOUSE — Spec Sheet”</a>
+        </div>
+        <div class="hero-meta">
+          <span>• PE-reviewed structural sets</span>
+          <span>• Windows & entry doors pre-installed</span>
+          <span>• Port-to-site logistics</span>
+        </div>
+        <div class="hero-flags" style="margin-top:12px;">
+          <div class="hero-flag-blue"></div>
+          <div class="hero-flag-yellow"></div>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <div class="hero-main-img">
+          <!-- Главное фото дома -->
+          <img src="images/house1.jpg" alt="Modern prefab house by MODHOUSE" />
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-title">Typical lead time</div>
+          <div class="hero-badge-value">8–12 weeks</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY MODHOUSE -->
+    <section id="products">
+      <h2>Why developers choose MODHOUSE</h2>
+      <p class="section-subtitle">
+        We are a B2B supplier. Our kits are built for repeatable projects: communities, resorts, in-fill housing and ADU programs.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="badge-square">🏭</div>
+          <div class="card-title">European manufacturing</div>
+          <div class="card-text">
+            Engineered and produced in Ukraine with factory-controlled quality, Eurocode-based design and documentation for local review.
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge-square">📦</div>
+          <div class="card-title">Container-optimized delivery</div>
+          <div class="card-text">
+            Kits are packed for sea containers with labeled elements, packing lists and on-site staging plan to shorten assembly time.
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge-square">⚡</div>
+          <div class="card-title">Fast on-site assembly</div>
+          <div class="card-text">
+            Dry construction, minimal wet trades and clear assembly sequence help your crew close the shell in days, not months.
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge-square">🛡️</div>
+          <div class="card-title">Compliance & engineering</div>
+          <div class="card-text">
+            Structural design based on Eurocodes with conversion to local standards and Professional Engineer review where required.
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge-square">🌡️</div>
+          <div class="card-title">Energy-efficient envelope</div>
+          <div class="card-text">
+            Thermal-first design, SIP / timber frame / AAC-based hybrids and U-value targets adapted to your climate and regulation.
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge-square">📈</div>
+          <div class="card-title">Predictable cost per m²</div>
+          <div class="card-text">
+            Factory production and repeatable details give you a clear cost structure and easier pro forma for investors and lenders.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECS -->
+    <section id="specs">
+      <div class="two-cols">
+        <div>
+          <h2>Technical profile & options</h2>
+          <p class="section-subtitle">
+            Choose shell level, envelope system and finish package to match your market, climate and sales strategy.
+          </p>
+          <ul class="spec-list">
+            <li class="spec-item">
+              <div class="spec-dot"></div>
+              <div>
+                <div class="spec-label">Envelope options</div>
+                <div class="spec-value">SIP, timber frame, glue-laminated, AAC-based hybrid systems.</div>
+              </div>
+            </li>
+            <li class="spec-item">
+              <div class="spec-dot"></div>
+              <div>
+                <div class="spec-label">U-value targets</div>
+                <div class="spec-value">Typical envelope 0.18–0.25 W/m²K (climate-dependent and project-specific).</div>
+              </div>
+            </li>
+            <li class="spec-item">
+              <div class="spec-dot"></div>
+              <div>
+                <div class="spec-label">Structural design</div>
+                <div class="spec-value">Eurocode basis with conversion to local standards and PE stamp where required.</div>
+              </div>
+            </li>
+            <li class="spec-item">
+              <div class="spec-dot"></div>
+              <div>
+                <div class="spec-label">Finish levels</div>
+                <div class="spec-value">Shell (with windows/entry doors), shell + MEP rough-in, or turnkey via local partners.</div>
+              </div>
+            </li>
+            <li class="spec-item">
+              <div class="spec-dot"></div>
+              <div>
+                <div class="spec-label">Module spans</div>
+                <div class="spec-value">Typical structural spans 3.6–6.0 m with custom options on request.</div>
+              </div>
+            </li>
+            <li class="spec-item">
+              <div class="spec-dot"></div>
+              <div>
+                <div class="spec-label">Documentation</div>
+                <div class="spec-value">Shop drawings, materials specs, QA photos, installation guides and packing lists.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-title">Typical schedule (indicative)</div>
+            <div class="card-text" style="margin-bottom:10px;">
+              Exact timing depends on permitting, scope and port conditions. This is a typical range for planning.
+            </div>
+            <ul class="spec-list">
+              <li class="spec-item">
+                <div class="spec-dot"></div>
+                <div>
+                  <div class="spec-label">Design intent</div>
+                  <div class="spec-value">2–4 weeks</div>
+                </div>
+              </li>
+              <li class="spec-item">
+                <div class="spec-dot"></div>
+                <div>
+                  <div class="spec-label">Engineering & PE review</div>
+                  <div class="spec-value">3–5 weeks</div>
+                </div>
+              </li>
+              <li class="spec-item">
+                <div class="spec-dot"></div>
+                <div>
+                  <div class="spec-label">Factory manufacturing</div>
+                  <div class="spec-value">8–12 weeks</div>
+                </div>
+              </li>
+              <li class="spec-item">
+                <div class="spec-dot"></div>
+                <div>
+                  <div class="spec-label">Ocean transit</div>
+                  <div class="spec-value">2–3 weeks (port-to-port)</div>
+                </div>
+              </li>
+              <li class="spec-item">
+                <div class="spec-dot"></div>
+                <div>
+                  <div class="spec-label">Customs & inland logistics</div>
+                  <div class="spec-value">3–7 days</div>
+                </div>
+              </li>
+              <li class="spec-item">
+                <div class="spec-dot"></div>
+                <div>
+                  <div class="spec-label">On-site assembly</div>
+                  <div class="spec-value">1–3 weeks to weather-tight shell (project-dependent).</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <p style="font-size:11px;color:var(--gray);margin-top:8px;">
+            For a detailed specification, request the PDF “MODHOUSE — Spec Sheet” via the contact form below.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" style="background:#f9fafb; border-radius:18px; padding:24px 16px;">
+      <h2>From brief to keys</h2>
+      <p class="section-subtitle">
+        Clear, staged process so your investors, lenders and city officials know what will happen and when.
+      </p>
+      <div class="step-grid">
+        <div class="card">
+          <div class="step-number">Step 1</div>
+          <div class="card-title">Discovery</div>
+          <div class="card-text">
+            Market, plots, code baseline, desired product mix and target cost per m² or per unit.
+          </div>
+        </div>
+        <div class="card">
+          <div class="step-number">Step 2</div>
+          <div class="card-title">Concept & VE</div>
+          <div class="card-text">
+            Concept layouts, elevations, envelope options and value-engineering scenarios.
+          </div>
+        </div>
+        <div class="card">
+          <div class="step-number">Step 3</div>
+          <div class="card-title">Engineering</div>
+          <div class="card-text">
+            Structural design, shop drawings, documentation for local engineers and permitting.
+          </div>
+        </div>
+        <div class="card">
+          <div class="step-number">Step 4</div>
+          <div class="card-title">Manufacturing</div>
+          <div class="card-text">
+            Factory production in Ukraine with QA photos and inspections before shipment.
+          </div>
+        </div>
+        <div class="card">
+          <div class="step-number">Step 5</div>
+          <div class="card-title">Logistics</div>
+          <div class="card-text">
+            Sea freight, customs, inland transport and on-site staging for fast assembly.
+          </div>
+        </div>
+        <div class="card">
+          <div class="step-number">Step 6</div>
+          <div class="card-title">Assembly & handover</div>
+          <div class="card-text">
+            Your crew or partner GC assembles under our guidance, followed by commissioning and handover.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES (фото) -->
+    <section>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+        <div>
+          <h2>Reference projects & typologies</h2>
+          <p class="section-subtitle">
+            These visuals show the aesthetic and typologies we design and build with our partners.
+          </p>
+        </div>
+        <a href="#contact" style="font-size:13px;color:var(--gray);">Add your project →</a>
+      </div>
+      <div class="case-grid">
+        <div class="card" style="padding:0;">
+          <img src="images/house2.jpg" alt="MODHOUSE community example" class="case-img" />
+          <div style="padding:12px 14px 14px;">
+            <div class="card-title">Family houses</div>
+            <div class="card-text">
+              Modern detached homes with strong insulation performance and clean, European facades.
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:0;">
+          <img src="images/house3.jpg" alt="MODHOUSE resort housing" class="case-img" />
+          <div style="padding:12px 14px 14px;">
+            <div class="card-title">Resort & seasonal</div>
+            <div class="card-text">
+              Compact layouts for resorts and seasonal communities, optimized for high occupancy.
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:0;">
+          <img src="images/interior1.jpg" alt="MODHOUSE interior" class="case-img" />
+          <div style="padding:12px 14px 14px;">
+            <div class="card-title">Light-filled interiors</div>
+            <div class="card-text">
+              Large glazing, efficient layouts and a Scandinavian-inspired material palette.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-grid">
+        <div>
+          <h2>Request pricing & availability</h2>
+          <p class="section-subtitle">
+            Tell us about your pipeline. We will answer with a cost model, lead time and notes on compliance for your country or region.
+          </p>
+          <ul class="contact-list">
+            <li><strong>Email:</strong> <a href="mailto:alex@modhouse.group">alex@modhouse.group</a></li>
+            <li><strong>Cell:</strong> <a href="tel:+16672068959">+1-667-206-8959</a></li>
+            <li><strong>Address:</strong> 11 Windmill Chase, Apt K, Sparks, MD 21152, USA</li>
+          </ul>
+        </div>
+        <div class="form-card">
+          <form
+            method="POST"
+            action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+          >
+            <div class="form-grid form-grid-2">
+              <div class="field">
+                <label for="name">Full name *</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div class="field">
+                <label for="email">Work email *</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text" />
+              </div>
+              <div class="field">
+                <label for="role">Role</label>
+                <input id="role" name="role" type="text" />
+              </div>
+              <div class="field">
+                <label for="region">Region</label>
+                <select id="region" name="region">
+                  <option>Germany</option>
+                  <option>Netherlands</option>
+                  <option>Nordics</option>
+                  <option>Poland</option>
+                  <option>Czech Republic / Slovakia</option>
+                  <option>Baltics</option>
+                  <option>Ireland</option>
+                  <option>Other EU / UK</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="timeline">Timeline</label>
+                <select id="timeline" name="timeline">
+                  <option>0–3 months</option>
+                  <option>3–6 months</option>
+                  <option>6–12 months</option>
+                  <option>Exploratory</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="project_size">Project size</label>
+                <select id="project_size" name="project_size">
+                  <option>5–20 homes</option>
+                  <option>20–50 homes</option>
+                  <option>50–100 homes</option>
+                  <option>100+ homes</option>
+                  <option>Mixed-use / custom</option>
+                </select>
+              </div>
+              <div class="field" style="grid-column:1 / -1;">
+                <label for="message">Project brief</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Location, number of units, target product, budget, any code or planning constraints."
+                ></textarea>
+              </div>
+            </div>
+            <div class="form-footer">
+              <div class="form-footer-row">
+                <span>By submitting you agree to be contacted about MODHOUSE products and services.</span>
+                <button type="submit" class="btn-submit">Send request</button>
+              </div>
+            </div>
+          </form>
+          <p style="font-size:11px;color:var(--gray);margin-top:8px;">
+            We usually respond within 1–3 business days with clarifying questions and a first cost range.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <div class="footer-title">MODHOUSE</div>
+          <p>Ukrainian houses for Europe. European-quality prefab kits for developers and investors.</p>
+        </div>
+        <div>
+          <div class="footer-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="#products">Products</a></li>
+            <li><a href="#specs">Technical spec</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Legal</div>
+          <ul class="footer-links">
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © <span id="year"></span> MODHOUSE. All rights reserved.
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // текущий год в футере
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
